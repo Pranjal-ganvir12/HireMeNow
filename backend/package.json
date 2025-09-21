@@ -1,0 +1,20 @@
+{
+    "name": "hiremenow-functions",
+    "main": "lib/index.js",
+    "type": "module",
+    "engines": { "node": "18" },
+    "scripts": {
+      "build": "tsc -p tsconfig.json",
+      "serve": "firebase emulators:start",
+      "deploy": "npm run build && firebase deploy --only functions"
+    },
+    "dependencies": {
+      "firebase-admin": "^12.6.0",
+      "firebase-functions": "^5.0.1",
+      "node-fetch": "^3.3.2"
+    },
+    "devDependencies": {
+      "typescript": "^5.4.5"
+    }
+  }
+  
