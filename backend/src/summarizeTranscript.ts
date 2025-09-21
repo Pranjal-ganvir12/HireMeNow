@@ -13,8 +13,13 @@ export const summarizeTranscriptFn = async (data:any) => {
     body: JSON.stringify({ inputs: String(transcript).slice(0,3800) })
   });
 
-  const out = await res.json();
-  const summary = Array.isArray(out) ? out[0]?.summary_text : out?.summary_text;
+  // 👇 Cast JSON to possible HuggingFace outputs
+  const out = (await res.json()) as { summary_text?: string }[] | { summary_text?: string };
+
+  let summary = "";
+  if (Array.isArray(out)) summary = out[0]?.summary_text ?? "";
+  else summary = out.summary_text ?? "";
+
   if (!summary) throw new Error("Summarization failed");
   return { summary };
 };

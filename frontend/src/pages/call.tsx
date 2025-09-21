@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import CallRoom from "../components/CallRoom";
+import React from "react";
 
 export default function CallPage() {
   const { specId, candidateId } = useParams();

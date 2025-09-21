@@ -15,7 +15,9 @@ export const transcribeWhisperFn = async (data: any) => {
     body: buf
   });
 
-  const out = await res.json();
+  // 👇 Cast JSON to known shape
+  const out = (await res.json()) as { text?: string };
+
   if (!out.text) throw new Error("Whisper failed");
   return { text: out.text };
 };
